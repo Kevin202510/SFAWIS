@@ -16,6 +16,6 @@ class Temperature extends Model
 
     public function getStatusNameAttribute(): string
     {
-        return TemperatureSensorStatus::find($this->status)->label;
+        return TemperatureSensorStatus::labels()[$this->status];
     }
 }
