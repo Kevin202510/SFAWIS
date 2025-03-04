@@ -53,7 +53,7 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('status')
+                Tables\Columns\TextColumn::make('statusName')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

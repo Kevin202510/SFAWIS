@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\Activation;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -22,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'status',
     ];
 
     /**
@@ -50,5 +53,10 @@ class User extends Authenticatable
     public function userInformation()
     {
         return $this->hasOne(UserInformation::class);
+    }
+
+    public function getStatusNameAttribute(): string
+    {
+        return Activation::labels()[$this->status];
     }
 }
