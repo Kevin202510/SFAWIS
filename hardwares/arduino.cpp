@@ -17,8 +17,8 @@ DHT dht(DHTPIN, DHTTYPE);
 
 // Sensor Pins
 #define SOIL_MOISTURE_PIN A0
-#define WATER_LEVEL_PIN D3
-#define RELAY_PIN D1
+#define WATER_LEVEL_PIN D5
+#define RELAY_PIN D0
 #define SOIL_THRESHOLD 1000
 
 void setup() {
@@ -93,7 +93,7 @@ void loop() {
         Serial.println("WiFi not connected!");
     }
 
-    delay(5000);
+    delay(60000);
 }
 
 void turnBoardLed() {
