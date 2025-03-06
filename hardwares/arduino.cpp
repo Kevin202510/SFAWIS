@@ -2,6 +2,11 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <DHT.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+// Initialize LCD with I2C address 0x27
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 // WiFi Credentials
 const char* ssid = "BIGTIME";
@@ -31,7 +36,14 @@ void setup() {
         Serial.print(".");
     }
     Serial.println("\nConnected!");
-    
+    lcd.init();       // Initialize LCD (Use init() instead of begin())
+    lcd.backlight();  // Turn on LCD backlight
+
+    lcd.setCursor(0, 0);
+    lcd.print("Hello, ESP8266!");
+
+    lcd.setCursor(0, 1);
+    lcd.print("LCD Test OK!");
     dht.begin();
     pinMode(WATER_LEVEL_PIN, INPUT);
     pinMode(RELAY_PIN, OUTPUT);
