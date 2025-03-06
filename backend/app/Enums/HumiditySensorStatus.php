@@ -18,4 +18,13 @@ class HumiditySensorStatus extends BaseEnum
             self::GOOD_HUMIDITY,
         ];
     }
+
+    public static function labels($translate = true): array
+    {
+        return [
+            self::HIGH_HUMIDITY,
+            self::LOW_HUMIDITY,
+            self::GOOD_HUMIDITY,
+        ];
+    }
 }

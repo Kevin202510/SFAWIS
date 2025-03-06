@@ -11,7 +11,7 @@ class SoilMoisureMonitoringChart extends ChartWidget
 {
     use InteractsWithPageFilters;
     protected static ?string $heading = 'Soil Moisture Monitoring Chart';
-    protected static ?string $pollingInterval = '15s';
+    protected static ?string $pollingInterval = '60s';
 
     protected function getData(): array
     {
@@ -21,7 +21,8 @@ class SoilMoisureMonitoringChart extends ChartWidget
         $soilMoistureData = SoilMoisture::limit(20)
             ->orderBy('created_at', 'desc')
             ->whereBetween('created_at',[$startDate->startOfDay(), $endDate->endOfDay()])
-            ->get(['created_at', 'soil_moisture']);
+            ->get(['created_at', 'soil_moisture'])
+            ->reverse();
 
         return [
             'datasets' => [
@@ -35,7 +36,7 @@ class SoilMoisureMonitoringChart extends ChartWidget
                     'pointHoverRadius' => 7,
                 ],
             ],
-            'labels' => $soilMoistureData->pluck('created_at')->map(fn($date) => Carbon::parse($date)->format('M d, Y'))->toArray(),
+            'labels' => $soilMoistureData->pluck('created_at')->map(fn($date) => Carbon::parse($date)->format('M d, Y h:i A'))->toArray(),
         ];
     }
 

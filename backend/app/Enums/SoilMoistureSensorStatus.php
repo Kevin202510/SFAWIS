@@ -20,4 +20,14 @@ class SoilMoistureSensorStatus extends BaseEnum
             self::MOISTURE_EXCESS,
         ];
     }
+
+    public static function labels($translate = true): array
+    {
+        return [
+            self::LONG_DROUGHT,
+            self::MOISTURE_DEFICIT,
+            self::OPTIMAL_MOISTURE,
+            self::MOISTURE_EXCESS,
+        ];
+    }
 }

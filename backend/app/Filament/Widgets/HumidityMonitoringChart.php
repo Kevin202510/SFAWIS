@@ -11,7 +11,7 @@ class HumidityMonitoringChart extends ChartWidget
 {
     use InteractsWithPageFilters;
     protected static ?string $heading = 'Humidity Monitoring Chart';
-    protected static ?string $pollingInterval = '15s';
+    protected static ?string $pollingInterval = '60s';
 
     protected function getData(): array
     {
@@ -21,7 +21,8 @@ class HumidityMonitoringChart extends ChartWidget
         $humidityData = Humidity::limit(20)
             ->orderBy('created_at', 'desc')
             ->whereBetween('created_at',[$startDate->startOfDay(), $endDate->endOfDay()])
-            ->get(['created_at', 'humidity']);
+            ->get(['created_at', 'humidity'])
+            ->reverse();
 
         return [
             'datasets' => [
@@ -35,7 +36,7 @@ class HumidityMonitoringChart extends ChartWidget
                     'pointHoverRadius' => 7,
                 ],
             ],
-            'labels' => $humidityData->pluck('created_at')->map(fn($date) => Carbon::parse($date)->format('M d, Y'))->toArray(),
+            'labels' => $humidityData->pluck('created_at')->map(fn($date) => Carbon::parse($date)->format('M d, Y h:i A'))->toArray(),
         ];
     }
 
