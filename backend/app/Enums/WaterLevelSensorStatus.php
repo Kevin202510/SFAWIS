@@ -18,4 +18,13 @@ class WaterLevelSensorStatus extends BaseEnum
             self::GOOD_WATER_LEVEL,
         ];
     }
+
+    public static function labels($translate = true): array
+    {
+        return [
+            self::HIGH_WATER_LEVEL,
+            self::LOW_WATER_LEVEL,
+            self::GOOD_WATER_LEVEL,
+        ];
+    }
 }

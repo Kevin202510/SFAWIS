@@ -21,4 +21,12 @@ class SensorConfigurationStatus extends BaseEnum
     {
         return $key == self::ACTIVE;
     }
+
+    public static function labels($translate = true): array
+    {
+        return [
+            self::INACTIVE => 'Inactive',
+            self::ACTIVE => 'Active',
+        ];
+    }
 }

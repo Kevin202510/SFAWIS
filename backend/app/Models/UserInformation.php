@@ -4,10 +4,11 @@ namespace App\Models;
 
 use App\Cores\Traits\DateAndTime;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserInformation extends Model
 {
-    use DateAndTime;
+    use DateAndTime, SoftDeletes;
 
     protected $fillable = [
         'profile_path',

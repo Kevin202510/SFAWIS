@@ -16,6 +16,6 @@ class Humidity extends Model
 
     public function getStatusNameAttribute(): string
     {
-        return HumiditySensorStatus::find($this->status)->label;
+        return HumiditySensorStatus::labels()[$this->status];
     }
 }

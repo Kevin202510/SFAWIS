@@ -17,6 +17,6 @@ class WaterLevel extends Model
 
     public function getStatusNameAttribute(): string
     {
-        return WaterLevelSensorStatus::find($this->status)->label;
+        return WaterLevelSensorStatus::labels()[$this->status];
     }
 }

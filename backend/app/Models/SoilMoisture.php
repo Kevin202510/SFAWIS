@@ -16,6 +16,6 @@ class SoilMoisture extends Model
 
     public function getStatusNameAttribute(): string
     {
-        return SoilMoistureSensorStatus::find($this->status)->label;
+        return SoilMoistureSensorStatus::labels()[$this->status];
     }
 }
